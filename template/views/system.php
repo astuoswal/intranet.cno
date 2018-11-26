@@ -3,6 +3,10 @@
 require_once '../../module/autoload_class.php';
 require_once '../../module/validate_session.php';
 
+if (!($session->getValue('rol') == 6)) {
+  header('location: ../../template/views/home.php?message=No tienes permitido entrar a la seccion a la que trataste de acceder&type=Dangermessage');
+} else {
+
 include 'commom/header.php';
 
 ?>
@@ -59,4 +63,7 @@ include 'commom/header.php';
         </div>
         <!-- /.container-fluid -->
 
-<?php include 'commom/footer.php'; ?>
+<?php include 'commom/footer.php'; 
+}
+
+?>

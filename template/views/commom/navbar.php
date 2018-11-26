@@ -14,8 +14,10 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="settingDropdown">
             <a class="dropdown-item" href="#">Dashboard - Colaboradores</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="system.php">Configuraciones del sistema</a>
+            <?php  if ($session->getValue('rol') == 6) {
+              ?><div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="system.php">Configuraciones del sistema</a><?php
+            } ?>
           </div>
         </li>
         
