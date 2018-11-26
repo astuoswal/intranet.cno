@@ -23,6 +23,8 @@ include 'commom/header.php';
             <li class="breadcrumb-item active">Inicio</li>
           </ol>
 
+          <div class="small text-muted" id="alert_message"><?php require_once '../../module/validate_message.php'; ?></div>
+
           <!-- Icon Cards-->
           <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
