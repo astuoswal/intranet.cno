@@ -15,18 +15,6 @@ if (!isset($_POST['submit'])){
         $login->SetIndicator($indicator);
         $login->SetPassword($password);
         $rowID = $login->getRowID();
-        function singIn($password,$indicator)
-        {
-            $login = new login();
-            $login->passwordUpdate($password) ;
-            $session = new session();
-            $session->addValue('id',$indicator);
-            $session->addValue('departamento',$rowID['id_departamento']);
-            $session->addValue('rol',$rowID['id_rol']);
-        
-            header('location: ../../template/views/home.php');
-        }
-
         $ad = new ldap();
         if (!$ad->connect()) {
             if (!$rowID) {
@@ -39,7 +27,14 @@ if (!isset($_POST['submit'])){
                     if ($rowID['status']=='deshabilitado') {
                         header('location: ../../template/views/login.php?message=Su usuario se encuentra deshabilitado. Comununicarse con el departamento RRHH&type=Dangermessage');
                     } else {
-                        singIn($password,$indicator);
+                        $login = new login();
+                        $login->passwordUpdate($password) ;
+                        $session = new session();
+                        $session->addValue('id',$indicator);
+                        $session->addValue('departamento',$rowID['id_departamento']);
+                        $session->addValue('rol',$rowID['id_rol']);
+                    
+                        header('location: ../../template/views/home.php');
                     }
                 }
             }
@@ -56,7 +51,14 @@ if (!isset($_POST['submit'])){
                     $login->SetEmail($rowAD[3]);
                     $row= $login->AddUser();
                     if (!$row) {
-                        singIn($password,$indicator);
+                        $login = new login();
+                        $login->passwordUpdate($password) ;
+                        $session = new session();
+                        $session->addValue('id',$indicator);
+                        $session->addValue('departamento',$rowID['id_departamento']);
+                        $session->addValue('rol',$rowID['id_rol']);
+
+                        header('location: ../../template/views/home.php');
                     } else {
                         header('location: ../../template/views/login.php?message=Hubo algun problema al iniciar. Comuniquese con el departamento TIC&type=Dangermessage');
                     }
@@ -64,7 +66,14 @@ if (!isset($_POST['submit'])){
                     if ($rowID['status']=='deshabilitado') {
                         header('location: ../../template/views/login.php?message=Su usuario se encuentra deshabilitado. Comununicarse con el departamento RRHH&type=Dangermessage');
                     } else {
-                        singIn($password,$indicator);
+                        $login = new login();
+                        $login->passwordUpdate($password) ;
+                        $session = new session();
+                        $session->addValue('id',$indicator);
+                        $session->addValue('departamento',$rowID['id_departamento']);
+                        $session->addValue('rol',$rowID['id_rol']);
+
+                        header('location: ../../template/views/home.php');
                     }
                 }
             }
